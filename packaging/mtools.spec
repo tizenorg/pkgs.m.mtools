@@ -35,6 +35,8 @@ make %{?_smp_mflags}
 %install
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/etc $RPM_BUILD_ROOT/%{_infodir}
+mkdir -p %{buildroot}/usr/share/license
+cp COPYING %{buildroot}/usr/share/license/%{name}
 %makeinstall
 install -m644 mtools.conf $RPM_BUILD_ROOT/etc
 
@@ -48,4 +50,4 @@ find $RPM_BUILD_ROOT -name "floppyd*" -exec rm {} \;
 %config(noreplace) /etc/mtools.conf
 %doc COPYING README Release.notes
 /usr/bin/*
-
+/usr/share/license/%{name}
